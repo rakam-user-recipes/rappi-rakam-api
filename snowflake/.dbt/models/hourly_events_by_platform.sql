@@ -9,7 +9,7 @@
 }}
 SELECT date_trunc('hour', _time) as "hour",
        event_type as "event_type", 
-       properties:platform::string as "platform",
+       properties:_os_name::string as "platform",
        count(*) as "total_events"
 FROM FIVETRAN.RAKAM_EVENTS.EVENTS WHERE _time between cast('2020-04-01' as date) and cast('2020-04-30' as date)
 {% if is_incremental() %}
