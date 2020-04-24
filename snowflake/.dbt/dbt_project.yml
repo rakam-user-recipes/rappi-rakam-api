@@ -1,0 +1,13 @@
+---
+name: "rakam_analytics__events"
+version: "1.0.0"
+quoting:
+  database: true
+  identifier: true
+  schema: true
+profile: "default"
+source-paths:
+- "models"
+analysis-paths:
+- "analysis"
+target-path: "target"
