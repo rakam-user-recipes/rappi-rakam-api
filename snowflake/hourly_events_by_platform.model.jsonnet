@@ -2,7 +2,7 @@
   name : "hourly_events_by_platform",
   sql : |||
    SELECT date_trunc('hour', _time) as "hour",
-          event_type as "hour", 
+          event_type as "event_type", 
           properties:platform::string as "platform",
           count(*) as "total_events"
    FROM FIVETRAN.RAKAM_EVENTS.EVENTS WHERE _time between cast('2020-04-01' as date) and cast('2020-04-30' as date)
@@ -29,6 +29,10 @@
     hour: {
       column: 'hour',
       type: 'timestamp',
+    },
+    event_type: {
+      column: 'event_type',
+      type: 'string',
     },
     platform: {
       column: 'platform',
