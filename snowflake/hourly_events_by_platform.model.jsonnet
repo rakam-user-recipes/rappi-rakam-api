@@ -5,9 +5,9 @@
           event_type, 
           properties:platform::string as platform,
           count(*) as total_events
-   FROM FIVETRAN.RAKAM_EVENTS.EVENTS 
+   FROM FIVETRAN.RAKAM_EVENTS.EVENTS WHERE _time > cast('2020-01-01')
    {% if is_incremental() %}
-    WHERE hour > (select max(hour) from {{this}})
+    AND hour > (select max(hour) from {{this}})
    {% endif %}
    GROUP BY 1, 2, 3
    
