@@ -5,7 +5,7 @@
           event_type, 
           properties:platform::string as platform,
           count(*) as total_events
-   FROM FIVETRAN.RAKAM_EVENTS.EVENTS WHERE _time > cast('2020-01-01')
+   FROM FIVETRAN.RAKAM_EVENTS.EVENTS WHERE _time > cast('2020-01-01' as date)
    {% if is_incremental() %}
     AND hour > (select max(hour) from {{this}})
    {% endif %}
@@ -17,7 +17,7 @@
     materialized : "incremental",
     incremental_strategy : "merge"
   },
-  mappings : { },
+  mappings : { }, 
   measures : {
     count_all_rows : {
       description : "Counts All Rows",
@@ -27,6 +27,5 @@
       aggregation : "count",
       type : "double"
     }
-  },
-  _path : "hourly_events_by_platform.model.jsonnet"
+  }
 }

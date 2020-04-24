@@ -11,7 +11,7 @@ SELECT date_trunc('hour', _time) as hour,
        event_type, 
        properties:platform::string as platform,
        count(*) as total_events
-FROM FIVETRAN.RAKAM_EVENTS.EVENTS WHERE _time > cast('2020-01-01')
+FROM FIVETRAN.RAKAM_EVENTS.EVENTS WHERE _time > cast('2020-01-01' as date)
 {% if is_incremental() %}
  AND hour > (select max(hour) from {{this}})
 {% endif %}
